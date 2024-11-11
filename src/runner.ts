@@ -1,13 +1,21 @@
-import { Type } from './interfaces';
+import { InputsAndOutput, Type } from './interfaces';
 
 export class JestRunner {
   constructor(private readonly classToInvoke: Type) {}
 
   public run(
     functionToTest: Function,
-    inputsAndOutputMap: Map<unknown, unknown>,
-    logicToRunAfter: Function | undefined = undefined,
-  ): void {}
+    inputsAndOutputCollection: Array<InputsAndOutput>,
+  ): void {
+    for (const inputAndOutput of inputsAndOutputCollection) {
+      const [inputs, output] = [inputAndOutput.inputs, inputAndOutput.output];
+      test(`[${functionToTest.name}] Should return '${output} for '${inputs}''`, () => {
+        expect(this.classToInvoke[functionToTest.name](inputs))[
+          typeof output === 'object' ? 'toEqual' : 'toBe'
+        ](output);
+      });
+    }
+  }
 
   private checkPrototypeOfInvokedFunction(functionToTest: Function) {
     const expectedFunctionPrototype: Function | undefined =
