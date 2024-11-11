@@ -12,7 +12,7 @@ export class JestRunner {
     for (const inputAndOutput of inputsAndOutputCollection) {
       const [inputs, output] = [inputAndOutput.inputs, inputAndOutput.output];
       test(`[${functionToTest.name}] Should return '${output} for '${inputs}'`, () => {
-        expect(this.classToInvoke[functionToTest.name](inputs))[
+        expect(this.classToInvoke[functionToTest.name](...inputs.flat()))[
           typeof output === 'object' ? 'toEqual' : 'toBe'
         ](output);
       });
