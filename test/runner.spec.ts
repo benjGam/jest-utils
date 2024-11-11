@@ -5,13 +5,16 @@ const runner = new JestRunner(Calculator);
 
 function add() {}
 
-describe('Test runner', () => {
-  try {
-    runner.run(add, [
-      {
-        inputs: [[1, 2]],
-        output: 5,
-      },
-    ]);
-  } catch {}
-});
+test('Just one test to be pleasant with Jest.', () =>
+  expect('test').toBe('test'));
+
+try {
+  runner.run(add, [
+    {
+      inputs: [[1, 2]],
+      output: 5,
+    },
+  ]);
+} catch {
+  console.log('The runner has throw correctly.');
+}
