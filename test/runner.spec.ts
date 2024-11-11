@@ -18,3 +18,10 @@ try {
 } catch {
   console.log('The runner has throw correctly.');
 }
+
+runner.run(Calculator.add, [
+  {
+    inputs: [[1, 2]],
+    output: 3,
+  },
+]);
