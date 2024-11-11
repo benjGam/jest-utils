@@ -7,9 +7,11 @@ export class JestRunner {
     functionToTest: Function,
     inputsAndOutputCollection: Array<InputsAndOutput>,
   ): void {
+    this.checkPrototypeOfInvokedFunction(functionToTest);
+
     for (const inputAndOutput of inputsAndOutputCollection) {
       const [inputs, output] = [inputAndOutput.inputs, inputAndOutput.output];
-      test(`[${functionToTest.name}] Should return '${output} for '${inputs}''`, () => {
+      test(`[${functionToTest.name}] Should return '${output} for '${inputs}'`, () => {
         expect(this.classToInvoke[functionToTest.name](inputs))[
           typeof output === 'object' ? 'toEqual' : 'toBe'
         ](output);
