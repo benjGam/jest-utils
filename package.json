@@ -22,10 +22,10 @@
   },
   "homepage": "https://github.com/benjGam/jest-utils",
   "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/node": "^20.9.0",
     "@typescript-eslint/eslint-plugin": "^5.54.1",
     "@typescript-eslint/parser": "^5.54.1",
-    "@types/jest": "^29.5.13",
-    "@types/node": "^20.9.0",
     "c8": "^7.13.0",
     "eslint": "^8.35.0",
     "eslint-config-prettier": "^8.7.0",
